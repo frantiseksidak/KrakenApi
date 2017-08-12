@@ -22,6 +22,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 using KrakenApi;
+using System.Threading.Tasks;
 
 namespace Test
 {
@@ -32,24 +33,29 @@ namespace Test
 
         private static void Main(string[] args)
         {
+            MainAsync(args).GetAwaiter().GetResult();
+        }
+
+        private static async Task MainAsync(string[] args)
+        {
             Kraken kraken = new Kraken(krakenKey, krakenSecret, 2500);
-            var time = kraken.GetServerTime();
-            //var assets = kraken.GetAssetInfo();
-            //var assets = kraken.GetAssetPairs();
-            //var ticker = kraken.GetTicker("XXBTZEUR");
-            //var ohlc = kraken.GetOHLC("XXBTZEUR", 1440);
-            //var orderbook = kraken.GetOrderBook("XXBTZEUR");
-            //var trades = kraken.GetRecentTrades("XXBTZEUR");
-            //var spread = kraken.GetRecentSpread("XXBTZEUR");
-            //var accountBalance = kraken.GetAccountBalance();
-            //var tradeBalance = kraken.GetTradeBalance();
-            //var openOrders = kraken.GetOpenOrders();
-            //var closedOrders = kraken.GetClosedOrders();
-            //var orders = kraken.QueryOrders(new string[] { "x" });
-            //var trades = kraken.GetTradesHistory();
-            //var openPositions = kraken.GetOpenPositions(new string[] { "x" });
-            //var ledgers = kraken.GetLedgers();
-            //var volume = kraken.GetTradeVolume(new string[] { "XXBTZEUR", "XXBTZUSD" }, true);
+            var time = await kraken.GetServerTimeAsync();
+            //var assets = await kraken.GetAssetInfoAsync();
+            //var assets = await kraken.GetAssetPairsAsync();
+            //var ticker = await kraken.GetTickerAsync("XXBTZEUR");
+            //var ohlc = await kraken.GetOHLCAsync("XXBTZEUR", 1440);
+            //var orderbook = await kraken.GetOrderBookAsync("XXBTZEUR");
+            //var trades = await kraken.GetRecentTradesAsync("XXBTZEUR");
+            //var spread = await kraken.GetRecentSpreadAsync("XXBTZEUR");
+            //var accountBalance = await kraken.GetAccountBalanceAsync();
+            //var tradeBalance = await kraken.GetTradeBalanceAsync();
+            //var openOrders = await kraken.GetOpenOrdersAsync();
+            //var closedOrders = await kraken.GetClosedOrdersAsync();
+            //var orders = await kraken.QueryOrdersAsync(new string[] { "x" });
+            //var trades = await kraken.GetTradesHistoryAsync();
+            //var openPositions = await kraken.GetOpenPositionsAsync(new string[] { "x" });
+            //var ledgers = await kraken.GetLedgersAsync();
+            //var volume = await kraken.GetTradeVolumeAsync(new string[] { "XXBTZEUR", "XXBTZUSD" }, true);
 
             //var order = new KrakenOrder();
             //order.Pair = "XXBTZEUR";
@@ -57,10 +63,10 @@ namespace Test
             //order.OrderType = "market";
             //order.Volume = 0.01m;
             //order.Validate = true;
-            //var result = kraken.AddOrder(order);
+            //var result = await kraken.AddOrderAsync(order);
 
-            //var depositMethods = kraken.GetDepositMethods(asset: "ZEUR");
-            //var depositStatus = kraken.GetDepositStatus("ZEUR", "Fidor Bank AG (SEPA)");
+            //var depositMethods = await kraken.GetDepositMethodsAsync(asset: "ZEUR");
+            //var depositStatus = await kraken.GetDepositStatusAsync("ZEUR", "Fidor Bank AG (SEPA)");
         }
     }
 }
